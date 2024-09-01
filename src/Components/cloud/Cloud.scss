@@ -1,0 +1,18 @@
+.cloud-img{
+    position: absolute;
+    @media (max-width:100vh) {
+        display: none;
+    }
+}
+
+.cloud-img-1{
+    right:-150px;
+    top: 400px;
+    width: clamp(500px, 45%, 100%);
+}
+
+.cloud-img-2{
+    left: -300px;
+    top: 500px;
+    width: clamp(500px, 45%, 100%);
+}

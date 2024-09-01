@@ -1,8 +1,13 @@
 import './SunAndMoon.scss';
+import SunImg from '../../resources/sun.svg';
+// import MoonImg from '../../resources/moon.svg';
 
 const SunAndMoon = () => {
     return (
-        <h1>SunAndMoon</h1>
+        <>
+            <img src={SunImg} alt="Sun" className="sunMoon-img" />
+            {/* <img src={MoonImg} alt="Moon" className="sunMoon-img" /> */}
+        </>
     )
 }
 

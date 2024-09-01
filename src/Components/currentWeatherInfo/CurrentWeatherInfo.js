@@ -2,7 +2,7 @@ import './CurrentWeatherInfo.scss';
 
 const CurrentWeatherInfo = () => {
     return (
-        <h1>CurrentWeatherInfo</h1>
+        <h1>d</h1>
     )
 }
 

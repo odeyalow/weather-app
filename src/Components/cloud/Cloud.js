@@ -1,8 +1,12 @@
+import CloudImg from '../../resources/cloud.svg'
 import './Cloud.scss';
 
 const Cloud = () => {
     return (
-        <h1>Cloud</h1>
+        <>
+            <img src={CloudImg} alt="Cloud" className="cloud-img cloud-img-1" />
+            <img src={CloudImg} alt="Cloud" className="cloud-img cloud-img-2" />
+        </>
     )
 }
 
