@@ -1,9 +1,8 @@
 import SunAndMoon from '../sunAndMoon/SunAndMoon';
 import Cloud from '../cloud/Cloud';
+import CurrentWeatherInfo from '../currentWeatherInfo/CurrentWeatherInfo';
 
 import './App.scss';
-// import CurrentWeatherInfo from '../currentWeatherInfo/CurrentWeatherInfo';
-
 
 const App = () => {
     return (
@@ -12,7 +11,7 @@ const App = () => {
             <Cloud/>
             <div className="main__content">
                 <h1 className="title">Weather App</h1>
-                
+                <CurrentWeatherInfo/>
             </div>
         </div>
     )

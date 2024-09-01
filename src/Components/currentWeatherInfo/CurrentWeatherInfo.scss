@@ -1,0 +1,44 @@
+.info-block__column{
+    position: relative;
+    z-index: 1;
+}
+.current-user-location__text{
+    font-size: 30px;
+    background: #fff;
+    padding: 15px 20px;
+    border-radius: 20px;
+}
+.current-temperature{
+    font-size: 225px;
+    color: #fff;
+    font-weight: bold;
+}
+.current-weather-condition__block{
+    display: flex;
+    align-items: center;
+    position: relative;
+    top: -30px;
+}
+.text{
+    font-size: 45px;
+    color: #fff;
+}
+.condition__icon{
+    max-width: 75px;
+}
+.other-info__block{
+    background-color: #fff;
+    max-width: 500px;
+    padding: 20px;
+    border-radius: 20px;
+}
+.other-info__list{
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+.list__item{
+    font-size: 25px;
+    display: flex;
+    justify-content: space-between  ;
+}
