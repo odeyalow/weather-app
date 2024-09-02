@@ -1,4 +1,4 @@
-import DayIcon from '../../resources/day icon.svg'
+import DayIcon from '../../resources/day-icon.svg'
 import './CurrentWeatherInfo.scss';
 
 const CurrentWeatherInfo = () => {

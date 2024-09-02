@@ -3,6 +3,7 @@
     padding: 15px 35px;
     font-size: 25px;
     border-radius: 20px;
+    text-wrap: nowrap;
 }
 
 .days__list{
@@ -14,7 +15,7 @@
     flex-direction: column;
     row-gap: 15px;
     border-radius: 20px;
-    overflow-y: scroll
+    overflow-y: scroll;
 }
 
 .list__btn{
@@ -29,6 +30,20 @@
     &:hover, &:focus{
         background-color: #DBDCDC;
     }
+    position: relative;
+    padding-right: 45px;
+}
+.days__list .temperature__text:after{
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px; /* Ширина иконки */
+    height: 50px; /* Высота иконки */
+    background-image: url('../../resources/day-icon.svg');
+    background-size: contain; /* Подгонка размера иконки */
+    background-repeat: no-repeat;;
 }
 
 ::-webkit-scrollbar{
