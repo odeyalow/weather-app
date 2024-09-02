@@ -1,12 +1,8 @@
 .info-block__column{
     position: relative;
     z-index: 1;
-}
-.current-user-location__text{
-    font-size: 30px;
-    background: #fff;
-    padding: 15px 20px;
-    border-radius: 20px;
+    max-width: 500px;
+    width: 100%;
 }
 .current-temperature{
     font-size: 225px;

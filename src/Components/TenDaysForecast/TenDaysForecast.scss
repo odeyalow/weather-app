@@ -1,0 +1,36 @@
+.days__title{
+    background-color: #fff;
+    padding: 15px 35px;
+    font-size: 25px;
+    border-radius: 20px;
+}
+
+.days__list{
+    margin-top: 40px;
+    background-color: #fff;
+    height: 410px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+    border-radius: 20px;
+    overflow-y: scroll
+}
+
+.list__btn{
+    background: transparent;
+    font-size: 25px;
+    display: flex;
+    justify-content: space-between;
+    padding: 7px 12px;
+    border-radius: 12.5px;
+    border: none;
+    width: 100%;
+    &:hover, &:focus{
+        background-color: #DBDCDC;
+    }
+}
+
+::-webkit-scrollbar{
+    display: none;
+}

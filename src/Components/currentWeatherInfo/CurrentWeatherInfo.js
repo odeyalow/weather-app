@@ -4,7 +4,7 @@ import './CurrentWeatherInfo.scss';
 const CurrentWeatherInfo = () => {
     return (
         <div className="info-block__column">
-            <span className="current-user-location__text">Now in <strong>New-York</strong></span>
+            
             <div className="main-info__block">
                 <span className="current-temperature">27°</span>
                 <div className="current-weather-condition__block">
