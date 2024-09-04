@@ -28,7 +28,7 @@
     border: none;
     width: 100%;
     &:hover, &:focus{
-        background-color: #DBDCDC;
+        background-color: #e4e4e4;
     }
     position: relative;
     padding-right: 45px;
@@ -39,10 +39,10 @@
     right: 0;
     top: 50%;
     transform: translateY(-50%);
-    width: 50px; /* Ширина иконки */
-    height: 50px; /* Высота иконки */
+    width: 50px;
+    height: 50px;
     background-image: url('../../resources/day-icon.svg');
-    background-size: contain; /* Подгонка размера иконки */
+    background-size: contain;
     background-repeat: no-repeat;;
 }
 
