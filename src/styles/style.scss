@@ -8,6 +8,8 @@
     padding: 0;
     box-sizing: border-box;
     transition: 200ms ease;
+    border: none;
+    background:none;
     &:focus{
         outline: transparent;
         transform: scale(105%);

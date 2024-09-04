@@ -8,7 +8,7 @@
 		</clipPath>
 	</defs>
 	<g clip-path="url(#clip5_1765)">
-		<circle id="circle" cx="20.500000" cy="20.500000" r="12.500000" fill="#000000" fill-opacity="0"/>
+		<circle id="circle" cx="20.500000" cy="20.500000" r="12.500000" fill="#2C2C2C" fill-opacity="0"/>
 		<circle id="circle" cx="20.500000" cy="20.500000" r="12.500000" stroke="#2C2C2C" stroke-opacity="1.000000" stroke-width="4.000000"/>
 		<line id="line" x1="29.338989" y1="29.338989" x2="40.000000" y2="40.000000" stroke="#2C2C2C" stroke-opacity="1.000000" stroke-width="4.000000"/>
 	</g>
