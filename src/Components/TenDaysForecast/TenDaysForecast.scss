@@ -6,15 +6,20 @@
     text-wrap: nowrap;
 }
 
-.days__list{
-    margin-top: 40px;
+.days-list__wrapper{
     background-color: #fff;
-    height: 410px;
-    padding: 20px;
+    border-radius: 20px;
+    padding: 15px 0 15px;
+    margin-top: 40px;
+}
+
+.days__list{
+    max-width: 220px;   
+    height: 380px;
+    padding: 0 10px;
     display: flex;
     flex-direction: column;
-    row-gap: 15px;
-    border-radius: 20px;
+    row-gap: 0px;
     overflow-y: scroll;
 }
 
@@ -23,15 +28,22 @@
     font-size: 25px;
     display: flex;
     justify-content: space-between;
-    padding: 7px 45px 0 12px;
+    padding: 7px 45px 7px 10px;
     border-radius: 12.5px;
     border: none;
     width: 100%;
-    &:hover, &:focus{
+    position: relative;
+    border: 4px solid #fff;
+    &:hover, &:focus {
+        transform: none;
         background-color: #e4e4e4;
     }
-    position: relative;
 }
+
+.list__btn-active{
+    border: 4px solid #e4e4e4;
+}
+
 .days__list .temperature__text:after{
     content: "";
     position: absolute;
@@ -45,6 +57,14 @@
     background-repeat: no-repeat;;
 }
 
-::-webkit-scrollbar{
-    display: none;
+::-webkit-scrollbar {
+    scrollbar-width: thin;
+    width: 12px;
 }
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #e4e4e4;
+    border-radius: 20px;
+  }
