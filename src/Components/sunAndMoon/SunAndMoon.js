@@ -1,6 +1,6 @@
 import './SunAndMoon.scss';
 import SunImg from '../../resources/sun.svg';
-// import MoonImg from '../../resources/moon.svg';
+// import MoonImg from '../../resources/moon.svg'; 
 
 const SunAndMoon = () => {
     return (

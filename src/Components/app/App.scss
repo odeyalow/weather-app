@@ -94,6 +94,16 @@ body{
         gap: 75px;
         flex-direction: column;
     }
+    @media (max-width:550px) {
+        gap: 50px;
+    }
+}
+
+.info-block__column{
+    width: 100%;
+    @media (max-width:781px) {
+        
+    }
 }
 
 .days-hours__columns{

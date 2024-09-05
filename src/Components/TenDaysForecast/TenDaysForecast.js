@@ -1,3 +1,4 @@
+import DayIcon from '../../resources/day-icon.svg'
 import './TenDaysForecast.scss';
 
 const TenDaysForecast = () => {
@@ -9,61 +10,91 @@ const TenDaysForecast = () => {
                     <li>
                         <button className="list__btn">
                             <span className="date__text">30/08</span>
-                            <span className="temperature__text">27°</span>
+                            <div className="condition__block">
+                                <span className="temperature__text">27°</span>
+                                <img src={DayIcon} alt="Day" className="condition__icon"/>
+                            </div>
                         </button>
                     </li>
                     <li>
                         <button className="list__btn">
                             <span className="date__text">30/08</span>
-                            <span className="temperature__text">27°</span>
+                            <div className="condition__block">
+                                <span className="temperature__text">27°</span>
+                                <img src={DayIcon} alt="Day" className="condition__icon"/>
+                            </div>
                         </button>
                     </li>
                     <li>
                         <button className="list__btn">
                             <span className="date__text">30/08</span>
-                            <span className="temperature__text">27°</span>
+                            <div className="condition__block">
+                                <span className="temperature__text">27°</span>
+                                <img src={DayIcon} alt="Day" className="condition__icon"/>
+                            </div>
                         </button>
                     </li>
                     <li>
                         <button className="list__btn">
                             <span className="date__text">30/08</span>
-                            <span className="temperature__text">27°</span>
+                            <div className="condition__block">
+                                <span className="temperature__text">27°</span>
+                                <img src={DayIcon} alt="Day" className="condition__icon"/>
+                            </div>
                         </button>
                     </li>
                     <li>
                         <button className="list__btn">
                             <span className="date__text">30/08</span>
-                            <span className="temperature__text">27°</span>
+                            <div className="condition__block">
+                                <span className="temperature__text">27°</span>
+                                <img src={DayIcon} alt="Day" className="condition__icon"/>
+                            </div>
                         </button>
                     </li>
                     <li>
                         <button className="list__btn">
                             <span className="date__text">30/08</span>
-                            <span className="temperature__text">27°</span>
+                            <div className="condition__block">
+                                <span className="temperature__text">27°</span>
+                                <img src={DayIcon} alt="Day" className="condition__icon"/>
+                            </div>
                         </button>
                     </li>
                     <li>
                         <button className="list__btn">
                             <span className="date__text">30/08</span>
-                            <span className="temperature__text">27°</span>
+                            <div className="condition__block">
+                                <span className="temperature__text">27°</span>
+                                <img src={DayIcon} alt="Day" className="condition__icon"/>
+                            </div>
                         </button>
                     </li>
                     <li>
                         <button className="list__btn">
                             <span className="date__text">30/08</span>
-                            <span className="temperature__text">27°</span>
+                            <div className="condition__block">
+                                <span className="temperature__text">27°</span>
+                                <img src={DayIcon} alt="Day" className="condition__icon"/>
+                            </div>
                         </button>
                     </li>
                     <li>
                         <button className="list__btn">
                             <span className="date__text">30/08</span>
-                            <span className="temperature__text">27°</span>
+                            <div className="condition__block">
+                                <span className="temperature__text">27°</span>
+                                <img src={DayIcon} alt="Day" className="condition__icon"/>
+                            </div>
                         </button>
                     </li>
                     <li>
                         <button className="list__btn">
                             <span className="date__text">30/08</span>
-                            <span className="temperature__text">27°</span>
+                            <div className="condition__block">
+                                <span className="temperature__text">27°</span>
+                                <img src={DayIcon} alt="Day" className="condition__icon"/>
+                            </div>
                         </button>
                     </li>
                 </ul>
