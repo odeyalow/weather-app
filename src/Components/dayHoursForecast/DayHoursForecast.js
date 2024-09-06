@@ -13,7 +13,7 @@ const DayHoursForecast = () => {
                             <span className="condition__text">Sunny</span>
                         </div>
                         <h3 className="temperature__text">27°</h3>
-                        <span className="hours">14:00</span>
+                        <span className="hours">Now</span>
                     </button>
                     <button className="hours__list-item">
                         <div className="hours__condition--block">

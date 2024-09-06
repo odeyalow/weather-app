@@ -9,7 +9,7 @@ const TenDaysForecast = () => {
                 <ul className="days__list">
                     <li>
                         <button className="list__btn">
-                            <span className="date__text">30/08</span>
+                            <span className="date__text">Today</span>
                             <div className="condition__block">
                                 <span className="temperature__text">27°</span>
                                 <img src={DayIcon} alt="Day" className="condition__icon"/>

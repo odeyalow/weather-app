@@ -12,20 +12,38 @@ class WeatherService {
         return await result.json();
     }
 
-    getCurrentForecast = (location) => {
-        return this.getData(`${this._apiBase}current.json?key=${this._apiKey}&q=${location}&aqi=no`);
+    getCurrentForecast = async (location) => {
+        const result = await this.getData(`${this._apiBase}current.json?key=${this._apiKey}&q=${location}&aqi=no`);
+        return this._transformCurrentForecast(result.current);
     }
 
     getSearchResults = (searchValue) => {
         return this.getData(`${this._apiBase}search.json?key=${this._apiKey}&q=${searchValue}&aqi=no`);
     }
 
-    getAstronomy = (location, currentDate) => {
-        return this.getData(`${this._apiBase}astronomy.json?key=${this._apiKey}q=${location}&dt=${currentDate}`);
+    getAstronomy = async (location, currentDate) => {
+        const result = await this.getData(`${this._apiBase}astronomy.json?key=${this._apiKey}&q=${location}&dt=${currentDate}`);
+        return this._transformAstronomy(result.astronomy.astro);
     }
 
-    getTenDaysForecast = (location) => {
+    getTenDaysForecast = async (location) => {
         return this.getData(`${this._apiBase}forecast.json?key=${this._apiKey}q=${location}&days=10&aqi=no&alerts=no`);
+    }
+
+    _transformCurrentForecast = (weather) => {
+        return {
+            temperature:Math.round(weather.temp_c),
+            conditionText:weather.condition.text,
+            conditionIcon:weather.condition.icon,
+            feelslike:Math.round(weather.feelslike_c),
+            humidity:weather.humidity,
+        }
+    }
+    _transformAstronomy = (astronomy) => {
+        return {
+            sunrise:astronomy.sunrise,
+            sunset:astronomy.sunset
+        }
     }
 }
 
