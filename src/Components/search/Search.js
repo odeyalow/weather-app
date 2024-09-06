@@ -18,6 +18,9 @@ const Search = () => {
                 <button className="result">London, City of London, Greater London United Kingdom</button>
                 <button className="result">London, Ontario, Canada</button>
                 <button className="result">Londonderry, New Hampshire, United States of America</button>
+                <button className="result">London, City of London, Greater London United Kingdom</button>
+                <button className="result">London, Ontario, Canada</button>
+                <button className="result">Londonderry, New Hampshire, United States of America</button>
             </ul>
         </>
     )

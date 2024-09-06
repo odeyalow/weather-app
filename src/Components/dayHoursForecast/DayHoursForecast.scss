@@ -94,3 +94,15 @@
         top: 225px;
     }
 }
+
+.hours__list::-webkit-scrollbar {
+    scrollbar-width: thin;
+    width: 12px;
+}
+.hours__list::-webkit-scrollbar-track {
+    background: transparent;
+}
+.hours__list::-webkit-scrollbar-thumb {
+    background-color: #e4e4e4;
+    border-radius: 20px;
+}

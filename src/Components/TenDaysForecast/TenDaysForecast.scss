@@ -91,14 +91,14 @@
     }
 }
 
-::-webkit-scrollbar {
+.days__list::-webkit-scrollbar {
     scrollbar-width: thin;
     width: 12px;
 }
-::-webkit-scrollbar-track {
+.days__list::-webkit-scrollbar-track {
     background: transparent;
 }
-::-webkit-scrollbar-thumb {
+.days__list::-webkit-scrollbar-thumb {
     background-color: #e4e4e4;
     border-radius: 20px;
 }

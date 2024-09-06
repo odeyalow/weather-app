@@ -11,7 +11,7 @@ const App = () => {
     return (
         <div className="main day">
             <SunAndMoon/>
-            <Cloud/> 
+            {/* <Cloud/>  */}
             <div className="main__content">
                 <h1 className="main-title">Weather App</h1>
                 <span className="current-user-location__text">Now in <strong>New-York</strong></span>
