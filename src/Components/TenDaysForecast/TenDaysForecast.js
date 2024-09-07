@@ -1,4 +1,3 @@
-import DayIcon from '../../resources/day-icon.svg'
 import './TenDaysForecast.scss';
 
 const TenDaysForecast = () => {
@@ -12,7 +11,7 @@ const TenDaysForecast = () => {
                             <span className="date__text">Today</span>
                             <div className="condition__block">
                                 <span className="temperature__text">27°</span>
-                                <img src={DayIcon} alt="Day" className="condition__icon"/>
+                                <img src="" alt="Day" className="condition__icon"/>
                             </div>
                         </button>
                     </li>
@@ -21,7 +20,7 @@ const TenDaysForecast = () => {
                             <span className="date__text">30/08</span>
                             <div className="condition__block">
                                 <span className="temperature__text">27°</span>
-                                <img src={DayIcon} alt="Day" className="condition__icon"/>
+                                <img src="" alt="Day" className="condition__icon"/>
                             </div>
                         </button>
                     </li>
@@ -30,7 +29,7 @@ const TenDaysForecast = () => {
                             <span className="date__text">30/08</span>
                             <div className="condition__block">
                                 <span className="temperature__text">27°</span>
-                                <img src={DayIcon} alt="Day" className="condition__icon"/>
+                                <img src="" alt="Day" className="condition__icon"/>
                             </div>
                         </button>
                     </li>
@@ -39,7 +38,7 @@ const TenDaysForecast = () => {
                             <span className="date__text">30/08</span>
                             <div className="condition__block">
                                 <span className="temperature__text">27°</span>
-                                <img src={DayIcon} alt="Day" className="condition__icon"/>
+                                <img src="" alt="Day" className="condition__icon"/>
                             </div>
                         </button>
                     </li>
@@ -48,7 +47,7 @@ const TenDaysForecast = () => {
                             <span className="date__text">30/08</span>
                             <div className="condition__block">
                                 <span className="temperature__text">27°</span>
-                                <img src={DayIcon} alt="Day" className="condition__icon"/>
+                                <img src="" alt="Day" className="condition__icon"/>
                             </div>
                         </button>
                     </li>
@@ -57,7 +56,7 @@ const TenDaysForecast = () => {
                             <span className="date__text">30/08</span>
                             <div className="condition__block">
                                 <span className="temperature__text">27°</span>
-                                <img src={DayIcon} alt="Day" className="condition__icon"/>
+                                <img src="" alt="Day" className="condition__icon"/>
                             </div>
                         </button>
                     </li>
@@ -66,7 +65,7 @@ const TenDaysForecast = () => {
                             <span className="date__text">30/08</span>
                             <div className="condition__block">
                                 <span className="temperature__text">27°</span>
-                                <img src={DayIcon} alt="Day" className="condition__icon"/>
+                                <img src="" alt="Day" className="condition__icon"/>
                             </div>
                         </button>
                     </li>
@@ -75,7 +74,7 @@ const TenDaysForecast = () => {
                             <span className="date__text">30/08</span>
                             <div className="condition__block">
                                 <span className="temperature__text">27°</span>
-                                <img src={DayIcon} alt="Day" className="condition__icon"/>
+                                <img src="" alt="Day" className="condition__icon"/>
                             </div>
                         </button>
                     </li>
@@ -84,7 +83,7 @@ const TenDaysForecast = () => {
                             <span className="date__text">30/08</span>
                             <div className="condition__block">
                                 <span className="temperature__text">27°</span>
-                                <img src={DayIcon} alt="Day" className="condition__icon"/>
+                                <img src="" alt="Day" className="condition__icon"/>
                             </div>
                         </button>
                     </li>
@@ -93,7 +92,7 @@ const TenDaysForecast = () => {
                             <span className="date__text">30/08</span>
                             <div className="condition__block">
                                 <span className="temperature__text">27°</span>
-                                <img src={DayIcon} alt="Day" className="condition__icon"/>
+                                <img src="" alt="Day" className="condition__icon"/>
                             </div>
                         </button>
                     </li>

@@ -1,4 +1,3 @@
-import DayIcon from '../../resources/day-icon.svg'
 import './DayHoursForecast.scss';
 
 const DayHoursForecast = () => {
@@ -9,7 +8,7 @@ const DayHoursForecast = () => {
                 <ul className="hours__list">
                     <button className="hours__list-item">
                         <div className="hours__condition--block">
-                            <img src={DayIcon} alt="Day" className="codition__icon"/>
+                            <img src="" alt="Day" className="codition__icon"/>
                             <span className="condition__text">Sunny</span>
                         </div>
                         <h3 className="temperature__text">27°</h3>
@@ -17,7 +16,7 @@ const DayHoursForecast = () => {
                     </button>
                     <button className="hours__list-item">
                         <div className="hours__condition--block">
-                            <img src={DayIcon} alt="Day" className="codition__icon"/>
+                            <img src="" alt="Day" className="codition__icon"/>
                             <span className="condition__text">Sunny</span>
                         </div>
                         <h3 className="temperature__text">27°</h3>
@@ -25,7 +24,7 @@ const DayHoursForecast = () => {
                     </button>
                     <button className="hours__list-item">
                         <div className="hours__condition--block">
-                            <img src={DayIcon} alt="Day" className="codition__icon"/>
+                            <img src="" alt="Day" className="codition__icon"/>
                             <span className="condition__text">Sunny</span>
                         </div>
                         <h3 className="temperature__text">27°</h3>
@@ -33,7 +32,7 @@ const DayHoursForecast = () => {
                     </button>
                     <button className="hours__list-item">
                         <div className="hours__condition--block">
-                            <img src={DayIcon} alt="Day" className="codition__icon"/>
+                            <img src="" alt="Day" className="codition__icon"/>
                             <span className="condition__text">Sunny</span>
                         </div>
                         <h3 className="temperature__text">27°</h3>
@@ -41,7 +40,7 @@ const DayHoursForecast = () => {
                     </button>
                     <button className="hours__list-item">
                         <div className="hours__condition--block">
-                            <img src={DayIcon} alt="Day" className="codition__icon"/>
+                            <img src="" alt="Day" className="codition__icon"/>
                             <span className="condition__text">Sunny</span>
                         </div>
                         <h3 className="temperature__text">27°</h3>

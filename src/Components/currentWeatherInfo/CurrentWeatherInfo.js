@@ -2,11 +2,14 @@ import { Component } from 'react';
 import WeatherService from '../../services/WeatherService';
 
 import './CurrentWeatherInfo.scss';
+import LoadingLight from '../loading/LoadingLight';
 
 class CurrentWeatherInfo extends Component{
     state = {
         weather: {},
-        astronomy:{}
+        astronomy:{},
+        loading:true,
+        error:false
     }
 
     componentDidUpdate(prevProps) {
@@ -18,7 +21,7 @@ class CurrentWeatherInfo extends Component{
     weatherService = new WeatherService();
 
     onWeatherLoaded = (weather) => {
-        this.setState({weather})
+        this.setState({weather, loading:false})
     }
 
     onAstronomyLoaded = (astronomy) => {
@@ -38,17 +41,23 @@ class CurrentWeatherInfo extends Component{
     }
 
     render() {
-        const {temperature, conditionText, conditionIcon, feelslike, humidity} = this.state.weather,
+        const {temperature, conditionText, conditionIcon, feelslike, humidity, loading} = this.state.weather,
               {sunrise, sunset} = this.state.astronomy;
-        
-        return (
-            <div className="info-block__column">
-                <div className="main-info__block">
+
+        const isMainInfoLoaded = loading ? <LoadingLight/>
+                : 
+                 <>
                     <span className="current-temperature">{temperature}°</span>
                     <div className="current-weather-condition__block">
                         <span className="text">{conditionText}</span>
                         <img src={conditionIcon} alt={conditionText} className="condition__icon"/>
                     </div>
+                </>;    
+
+        return (
+            <div className="info-block__column">
+                <div className="main-info__block">
+                    {isMainInfoLoaded}
                 </div>
                 <div className="other-info__block">
                         <ul className="other-info__list">

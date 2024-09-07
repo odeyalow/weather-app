@@ -5,8 +5,9 @@ import TenDaysForecast from '../TenDaysForecast/TenDaysForecast';
 import DayHoursForecast from '../dayHoursForecast/DayHoursForecast';
 import Search from '../search/Search';
 import { Component } from 'react';
-import IPInfoService from '../../services/IPInfoService'
+import IPInfoService from '../../services/IPInfoService';
 import WeatherService from '../../services/WeatherService';
+import LoadingDarkSmall from '../loading/LoadingDarkSmall';
 
 import './App.scss';
 
@@ -14,7 +15,9 @@ class App extends Component {
     state = {
         location: '',
         localtime: '',
-        isDay:''
+        isDay:'',
+        loading:true,
+        error:false
     }
 
     componentDidMount() {
@@ -25,7 +28,7 @@ class App extends Component {
     weatherService = new WeatherService();
 
     onDataLoaded = (city) => {
-        this.setState({location:city})
+        this.setState({location:city, loading:false})
         this.weatherService
         .getLocalTime(city)
         .then(res => {
@@ -42,15 +45,15 @@ class App extends Component {
     }
 
     render() {
-        const {location, isDay} = this.state;
-
+        const {location, isDay, loading} = this.state;
+        const isLocationLoaded = loading ? <LoadingDarkSmall/> : <span className="current-user-location__text">Now in <strong>{location}</strong></span>;
         return (
             <div className={isDay === true ? 'main day' : 'main night'}>
                 <SunAndMoon isDay={isDay}/>
                 <Cloud isDay={isDay}/> 
                 <div className="main__content">
                     <h1 className="main-title">Weather App</h1>
-                    <span className="current-user-location__text">Now in <strong>{location}</strong></span>
+                    {isLocationLoaded}
                     <div className="info__columns">
                         <CurrentWeatherInfo location={location}/>
                         <div className="days-hours__columns">
