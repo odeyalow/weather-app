@@ -17,6 +17,10 @@ class WeatherService {
         return this._transformCurrentForecast(result.current);
     }
 
+    getLocalTime = async (location) => {
+        return this.getData(`${this._apiBase}current.json?key=${this._apiKey}&q=${location}&aqi=no`);
+    }
+
     getSearchResults = (searchValue) => {
         return this.getData(`${this._apiBase}search.json?key=${this._apiKey}&q=${searchValue}&aqi=no`);
     }

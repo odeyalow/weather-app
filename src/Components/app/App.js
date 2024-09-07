@@ -6,12 +6,15 @@ import DayHoursForecast from '../dayHoursForecast/DayHoursForecast';
 import Search from '../search/Search';
 import { Component } from 'react';
 import IPInfoService from '../../services/IPInfoService'
+import WeatherService from '../../services/WeatherService';
 
 import './App.scss';
 
 class App extends Component {
     state = {
-        location: ''
+        location: '',
+        localtime: '',
+        isDay:''
     }
 
     componentDidMount() {
@@ -19,27 +22,37 @@ class App extends Component {
     }
 
     ipInfoService = new IPInfoService();
+    weatherService = new WeatherService();
 
-    onLocationLoaded = (city) => {
+    onDataLoaded = (city) => {
         this.setState({location:city})
+        this.weatherService
+        .getLocalTime(city)
+        .then(res => {
+            let localtime = res.location.localtime.slice(11, 13);
+            this.setState({localtime})
+            this.setState({isDay:localtime > 6 && localtime < 8 ? true : false})
+        });   
     }
 
     updateLocation = () => {
         this.ipInfoService
         .getLocation()
-        .then(res => this.onLocationLoaded(res.city));
+        .then(res => this.onDataLoaded(res.city));
     }
 
     render() {
+        const {location, isDay} = this.state;
+
         return (
-            <div className="main day">
-                <SunAndMoon/>
-                <Cloud/> 
+            <div className={isDay === true ? 'main day' : 'main night'}>
+                <SunAndMoon isDay={isDay}/>
+                <Cloud isDay={isDay}/> 
                 <div className="main__content">
                     <h1 className="main-title">Weather App</h1>
-                    <span className="current-user-location__text">Now in <strong>{this.state.location}</strong></span>
+                    <span className="current-user-location__text">Now in <strong>{location}</strong></span>
                     <div className="info__columns">
-                        <CurrentWeatherInfo location={this.state.location}/>
+                        <CurrentWeatherInfo location={location}/>
                         <div className="days-hours__columns">
                             <TenDaysForecast/>
                             <DayHoursForecast/>

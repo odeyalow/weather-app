@@ -1,12 +1,13 @@
 import './SunAndMoon.scss';
 import SunImg from '../../resources/sun.svg';
-// import MoonImg from '../../resources/moon.svg'; 
+import MoonImg from '../../resources/moon.svg'; 
 
-const SunAndMoon = () => {
+const SunAndMoon = (isDay) => {
     return (
         <>
-            <img src={SunImg} alt="Sun" className="sunMoon-img" />
-            {/* <img src={MoonImg} alt="Moon" className="sunMoon-img" /> */}
+            {isDay === true 
+            ? <img src={SunImg} alt="Sun" className="sunMoon-img"/> 
+            : <img src={MoonImg} alt="Moon" className="sunMoon-img"/>}
         </>
     )
 }

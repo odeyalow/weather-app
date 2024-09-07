@@ -1,7 +1,6 @@
 import { Component } from 'react';
 import WeatherService from '../../services/WeatherService';
 
-import DayIcon from '../../resources/day-icon.svg'
 import './CurrentWeatherInfo.scss';
 
 class CurrentWeatherInfo extends Component{
