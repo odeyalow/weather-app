@@ -1,27 +1,31 @@
 import { Component } from 'react';
 import WeatherService from '../../services/WeatherService';
+import IPInfoService from '../../services/IPInfoService';
 
 import './CurrentWeatherInfo.scss';
-import LoadingLight from '../loading/LoadingLight';
 
 class CurrentWeatherInfo extends Component{
     state = {
         weather: {},
         astronomy:{},
-        loading:true,
-        error:false
+        location:this.props.location
     }
 
-    componentDidUpdate(prevProps) {
-        if (prevProps.location !== this.props.location) {
+    componentDidMount(){
+        this.updateLocation();
+    }
+
+    componentDidUpdate(prevState) {
+        if (prevState !== this.state) { 
             this.updateCurrentForecast();
         }
     }
 
+    ipInfoService = new IPInfoService();
     weatherService = new WeatherService();
 
     onWeatherLoaded = (weather) => {
-        this.setState({weather, loading:false})
+        this.setState({weather})
     }
 
     onAstronomyLoaded = (astronomy) => {
@@ -30,34 +34,37 @@ class CurrentWeatherInfo extends Component{
 
     updateCurrentForecast = () => {
         this.weatherService
-        .getCurrentForecast(this.props.location)
+        .getCurrentForecast(this.state.location)
         .then(this.onWeatherLoaded);
-
         const date = new Date(),
         filteredDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDay() < 10 ? '0' + date.getDay() : date.getDay()}`;
         this.weatherService
-        .getAstronomy(this.props.location, filteredDate)
+        .getAstronomy(this.state.location, filteredDate)
         .then(this.onAstronomyLoaded);
     }
 
+    onDataLoaded = (city) => {
+        this.setState({location:city})
+    }
+    
+    updateLocation = () => {
+        this.ipInfoService
+        .getLocation()
+        .then(res => this.onDataLoaded(res.city));
+    }
+
     render() {
-        const {temperature, conditionText, conditionIcon, feelslike, humidity, loading} = this.state.weather,
+        const {temperature, conditionText, conditionIcon, feelslike, humidity} = this.state.weather,
               {sunrise, sunset} = this.state.astronomy;
 
-        const isMainInfoLoaded = loading ? <LoadingLight/>
-                : 
-                 <>
+        return (
+            <div className="info-block__column">
+                <div className="main-info__block">
                     <span className="current-temperature">{temperature}°</span>
                     <div className="current-weather-condition__block">
                         <span className="text">{conditionText}</span>
                         <img src={conditionIcon} alt={conditionText} className="condition__icon"/>
                     </div>
-                </>;    
-
-        return (
-            <div className="info-block__column">
-                <div className="main-info__block">
-                    {isMainInfoLoaded}
                 </div>
                 <div className="other-info__block">
                         <ul className="other-info__list">

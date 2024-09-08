@@ -7,7 +7,7 @@ import Search from '../search/Search';
 import { Component } from 'react';
 import IPInfoService from '../../services/IPInfoService';
 import WeatherService from '../../services/WeatherService';
-import LoadingDarkSmall from '../loading/LoadingDarkSmall';
+import LoadingLight from '../loading/LoadingLight';
 
 import './App.scss';
 
@@ -17,7 +17,6 @@ class App extends Component {
         localtime: '',
         isDay:'',
         loading:true,
-        error:false
     }
 
     componentDidMount() {
@@ -34,8 +33,8 @@ class App extends Component {
         .then(res => {
             let localtime = res.location.localtime.slice(11, 13);
             this.setState({localtime})
-            this.setState({isDay:localtime > 6 && localtime < 8 ? true : false})
-        });   
+            this.setState({isDay:localtime > 6 && localtime < 20 ? true : false})
+        });
     }
 
     updateLocation = () => {
@@ -45,25 +44,33 @@ class App extends Component {
     }
 
     render() {
-        const {location, isDay, loading} = this.state;
-        const isLocationLoaded = loading ? <LoadingDarkSmall/> : <span className="current-user-location__text">Now in <strong>{location}</strong></span>;
+        const {isDay, loading, location} = this.state;
+        // const Loading = loading ? <LoadingLight/> :  null;
+        // const Content = !loading ? <View location={location}/> : null;
+
         return (
-            <div className={isDay === true ? 'main day' : 'main night'}>
+            <div className={isDay ? 'main day' : 'main night'}>
                 <SunAndMoon isDay={isDay}/>
                 <Cloud isDay={isDay}/> 
                 <div className="main__content">
                     <h1 className="main-title">Weather App</h1>
-                    {isLocationLoaded}
-                    <div className="info__columns">
-                        <CurrentWeatherInfo location={location}/>
-                        <div className="days-hours__columns">
-                            <TenDaysForecast/>
-                            <DayHoursForecast/>
-                        </div>
-                    </div>
-                    <div className="scroll__wrapper">
-                        <button>See other places</button>
-                    </div>
+                    {
+                        loading 
+                        ? <LoadingLight/> 
+                        : <>
+                            <span className="current-user-location__text">Now in <strong>{location}</strong></span>
+                            <div className="info__columns">
+                                <CurrentWeatherInfo location={location}/>
+                                <div className="days-hours__columns">
+                                    <TenDaysForecast/>
+                                    <DayHoursForecast/>
+                                </div>
+                            </div>
+                            <div className="scroll__wrapper">
+                                <button>See other places</button>
+                            </div>
+                        </>
+                    }
                 </div>
                 
                 <div className="search__content">
@@ -81,5 +88,23 @@ class App extends Component {
         )
     }
 }
+
+// const View = ({location}) => {
+//     return (
+//         <>
+//             <span className="current-user-location__text">Now in <strong>{location}</strong></span>
+//             <div className="info__columns">
+//             <CurrentWeatherInfo/>
+//                 <div className="days-hours__columns">
+//                     <TenDaysForecast/>
+//                     <DayHoursForecast/>
+//                 </div>
+//             </div>
+//             <div className="scroll__wrapper">
+//                 <button>See other places</button>
+//             </div>
+//         </>
+//     )
+// }
 
 export default App;
