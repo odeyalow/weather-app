@@ -1,6 +1,5 @@
 import { Component } from 'react';
 import WeatherService from '../../services/WeatherService';
-import IPInfoService from '../../services/IPInfoService';
 
 import './CurrentWeatherInfo.scss';
 
@@ -8,20 +7,14 @@ class CurrentWeatherInfo extends Component{
     state = {
         weather: {},
         astronomy:{},
-        location:this.props.location
     }
 
-    componentDidMount(){
-        this.updateLocation();
-    }
-
-    componentDidUpdate(prevState) {
-        if (prevState !== this.state) { 
-            this.updateCurrentForecast();
+    componentDidUpdate(prevProps) {
+        if (prevProps.location !== this.props.location) {
+          this.updateCurrentForecast();
         }
-    }
+      }
 
-    ipInfoService = new IPInfoService();
     weatherService = new WeatherService();
 
     onWeatherLoaded = (weather) => {
@@ -34,23 +27,13 @@ class CurrentWeatherInfo extends Component{
 
     updateCurrentForecast = () => {
         this.weatherService
-        .getCurrentForecast(this.state.location)
+        .getCurrentForecast(this.props.location)
         .then(this.onWeatherLoaded);
         const date = new Date(),
-        filteredDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDay() < 10 ? '0' + date.getDay() : date.getDay()}`;
+        filteredDate = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDay() < 10 ? '0' + date.getDay() : date.getDay()}`;
         this.weatherService
-        .getAstronomy(this.state.location, filteredDate)
+        .getAstronomy(this.props.location, filteredDate)
         .then(this.onAstronomyLoaded);
-    }
-
-    onDataLoaded = (city) => {
-        this.setState({location:city})
-    }
-    
-    updateLocation = () => {
-        this.ipInfoService
-        .getLocation()
-        .then(res => this.onDataLoaded(res.city));
     }
 
     render() {

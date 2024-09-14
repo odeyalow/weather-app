@@ -17,7 +17,7 @@ class WeatherService {
         return this._transformCurrentForecast(result.current);
     }
 
-    getLocalTime = async (location) => {
+    getLocalTime = (location) => {
         return this.getData(`${this._apiBase}current.json?key=${this._apiKey}&q=${location}&aqi=no`);
     }
 
@@ -31,7 +31,8 @@ class WeatherService {
     }
 
     getTenDaysForecast = async (location) => {
-        return this.getData(`${this._apiBase}forecast.json?key=${this._apiKey}q=${location}&days=10&aqi=no&alerts=no`);
+        const result = await this.getData(`${this._apiBase}forecast.json?key=${this._apiKey}q=${location}&days=10&aqi=no&alerts=no`);
+        return result.forecast.forecastday.map(this._transformTenDaysForecast);
     }
 
     _transformCurrentForecast = (weather) => {
@@ -47,6 +48,14 @@ class WeatherService {
         return {
             sunrise:astronomy.sunrise,
             sunset:astronomy.sunset
+        }
+    }
+    _transformTenDaysForecast = (forecast) => {
+        return {
+            temperature: forecast.day.avgtemp_c,
+            // conditionText: forecast.condition.text,
+            // conditionIcon: forecast.condition.icon,
+            // hours: forecast.hour
         }
     }
 }
