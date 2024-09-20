@@ -13,7 +13,7 @@ class CurrentWeatherInfo extends Component{
         if (prevProps.location !== this.props.location) {
           this.updateCurrentForecast();
         }
-      }
+    }
 
     weatherService = new WeatherService();
 

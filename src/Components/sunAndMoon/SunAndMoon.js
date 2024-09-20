@@ -5,7 +5,7 @@ import MoonImg from '../../resources/moon.svg';
 const SunAndMoon = (isDay) => {
     return (
         <>
-            {isDay === true 
+            {isDay
             ? <img src={SunImg} alt="Sun" className="sunMoon-img"/> 
             : <img src={MoonImg} alt="Moon" className="sunMoon-img"/>}
         </>

@@ -1,7 +1,7 @@
 import SunAndMoon from '../sunAndMoon/SunAndMoon';
 import Cloud from '../cloud/Cloud';
 import CurrentWeatherInfo from '../currentWeatherInfo/CurrentWeatherInfo';
-import TenDaysForecast from '../TenDaysForecast/TenDaysForecast';
+import ThreeDaysForecast from '../ThreeDaysForecast/ThreeDaysForecast';
 import DayHoursForecast from '../dayHoursForecast/DayHoursForecast';
 import Search from '../search/Search';
 import { Component } from 'react';
@@ -54,7 +54,7 @@ class App extends Component {
                     <div className="info__columns">
                         <CurrentWeatherInfo location={location}/>
                         <div className="days-hours__columns">
-                            <TenDaysForecast location={location}/>
+                            <ThreeDaysForecast location={location}/>
                             <DayHoursForecast location={location}/>
                         </div>
                     </div>
@@ -69,7 +69,7 @@ class App extends Component {
                     <div className="info__columns">
                         <CurrentWeatherInfo/>
                         <div className="days-hours__columns">
-                            <TenDaysForecast/>
+                            <ThreeDaysForecast/>
                             <DayHoursForecast/>
                         </div>
                     </div>

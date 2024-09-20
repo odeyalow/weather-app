@@ -1,6 +1,6 @@
 class WeatherService {
     _apiBase = 'http://api.weatherapi.com/v1/';
-    _apiKey = '082daf8e28304095b85121007242408';
+    _apiKey = '4c4a9fdc9c04461191890932242009';
     
     getData = async (url) => {
         let result = await fetch(url);
@@ -30,8 +30,8 @@ class WeatherService {
         return this._transformAstronomy(result.astronomy.astro);
     }
 
-    getTenDaysForecast = async (location) => {
-        const result = await this.getData(`${this._apiBase}forecast.json?key=${this._apiKey}q=${location}&days=10&aqi=no&alerts=no`);
+    getThreeDaysForecast = async (location) => {
+        const result = await this.getData(`${this._apiBase}forecast.json?key=${this._apiKey}&q=${location}&days=4&aqi=no&alerts=no`);
         return result.forecast.forecastday.map(this._transformTenDaysForecast);
     }
 
@@ -52,10 +52,11 @@ class WeatherService {
     }
     _transformTenDaysForecast = (forecast) => {
         return {
-            temperature: forecast.day.avgtemp_c,
-            // conditionText: forecast.condition.text,
-            // conditionIcon: forecast.condition.icon,
-            // hours: forecast.hour
+            minTemperature: Math.round(forecast.day.mintemp_c),
+            maxTemperature: Math.round(forecast.day.maxtemp_c),
+            conditionText: forecast.day.condition.text,
+            conditionIcon: forecast.day.condition.icon,
+            hours: forecast.hour
         }
     }
 }
