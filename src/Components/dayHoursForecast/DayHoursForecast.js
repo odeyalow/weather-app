@@ -30,6 +30,21 @@ class DayHoursForecast extends Component {
     }
 
     render() {
+        const dayDetermine = (dayIndex) => {
+            let day = '';
+            switch (dayIndex) {
+                case 0:
+                    day = 'Today';
+                    break;
+                case 1:
+                    day = 'Tomorrow';
+                    break;
+                case 2:
+                    day = 'Day after tomorrow';
+                    break;
+            }
+            return day;
+        }
         const showHours = (dayIndex) => {
             return this.state.forecast.length <= 0 ? null : this.state.forecast[dayIndex].hours.map(hour => {
                 return (
@@ -43,11 +58,11 @@ class DayHoursForecast extends Component {
                     </button>
                 )
             });
-        }   
+        }
         showHours(0);
         return (
             <div className='main-wrapper'>
-                <span className="hours__title">24 hour forecast for <strong>30/08</strong></span>
+                <span className="hours__title"><strong>{dayDetermine(this.props.selectedDayIndex)}'s</strong> hourly forecast</span>
                 <div className="hours-list__wrapper">
                     <ul className="hours__list">
                         {showHours(this.props.selectedDayIndex)}

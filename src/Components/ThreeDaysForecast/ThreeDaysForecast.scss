@@ -4,6 +4,7 @@
     font-size: 25px;
     border-radius: 20px;
     text-wrap: nowrap;
+    display: block;
     @media (max-width:820px) {
         display: block;
         max-width: 100%;

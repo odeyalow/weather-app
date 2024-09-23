@@ -7,9 +7,11 @@
 
 .hours__title{
     background-color: #fff;
-    padding: 15px 100px;
+    padding: 15px 35px;
     font-size: 25px;
     border-radius: 20px;
+    display: block;
+    text-align: center;
     @media (max-width:550px) {
         padding: 13px 15px;
         font-size: 15px;
