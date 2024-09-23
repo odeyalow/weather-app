@@ -14,7 +14,8 @@ class App extends Component {
     state = {
         location: '',
         localtime: '',
-        isDay:null
+        isDay:null,
+        selectedDayIndex: 0
     }
 
     componentDidMount() {
@@ -41,6 +42,10 @@ class App extends Component {
         .then(res => this.onDataLoaded(res.city));
     }
 
+    onDaySelect = (index) => {
+        this.setState({selectedDayIndex:index});
+    }
+
     render() {
         const {isDay, location} = this.state;
 
@@ -54,8 +59,13 @@ class App extends Component {
                     <div className="info__columns">
                         <CurrentWeatherInfo location={location}/>
                         <div className="days-hours__columns">
-                            <ThreeDaysForecast location={location}/>
-                            <DayHoursForecast location={location}/>
+                            <ThreeDaysForecast 
+                            location={location} 
+                            onDaySelect={this.onDaySelect}
+                            selectedDayIndex={this.state.selectedDayIndex}/>
+                            <DayHoursForecast 
+                            location={location}
+                            selectedDayIndex={this.state.selectedDayIndex}/>
                         </div>
                     </div>
                     <div className="scroll__wrapper">

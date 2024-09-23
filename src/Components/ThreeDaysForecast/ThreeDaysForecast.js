@@ -5,7 +5,7 @@ import './ThreeDaysForecast.scss';
 
 class ThreeDaysForecast extends Component {
     state = {
-        forecast: []
+        forecast: [],
     }
     
     weatherService = new WeatherService();
@@ -38,7 +38,8 @@ class ThreeDaysForecast extends Component {
                 <div className="days-list__wrapper">
                     <ul className="days__list">
                         <li>
-                            <button className="list__btn">
+                            <button className={this.props.selectedDayIndex === 0 ? 'list__btn active' : 'list__btn'}
+                            onClick={() => this.props.onDaySelect(0)}>
                                 <span className="date__text">Today</span>
                                 <div className="condition__block">
                                     <span className="temperature__text">{getDataFromState(0, 'maxTemperature')}°/{getDataFromState(0, 'minTemperature')}°</span>
@@ -50,7 +51,8 @@ class ThreeDaysForecast extends Component {
                             </button>
                         </li>
                         <li>
-                            <button className="list__btn">
+                            <button onClick={() => this.props.onDaySelect(1)} 
+                            className={this.props.selectedDayIndex === 1 ? 'list__btn active' : 'list__btn'}>
                                 <span className="date__text">Tomorrow</span>
                                 <div className="condition__block">
                                     <span className="temperature__text">{getDataFromState(1, 'maxTemperature')}°/{getDataFromState(1, 'minTemperature')}°</span>
@@ -62,7 +64,8 @@ class ThreeDaysForecast extends Component {
                             </button>
                         </li>
                         <li>
-                            <button className="list__btn">
+                            <button onClick={() => this.props.onDaySelect(2)}
+                             className={this.props.selectedDayIndex === 2 ? 'list__btn active' : 'list__btn'}>
                                 <span className="date__text">Day after tomorrow</span>
                                 <div className="condition__block">
                                     <span className="temperature__text">{getDataFromState(2, 'maxTemperature')}°/{getDataFromState(2, 'minTemperature')}°</span>
