@@ -47,7 +47,7 @@ class App extends Component {
         return (
             <div className={isDay ? 'main day' : 'main night'}>
                 <SunAndMoon isDay={isDay}/>
-                {/* <Cloud isDay={isDay}/>  */}
+                <Cloud isDay={isDay}/> 
                 <div className="main__content">
                     <h1 className="main-title">Weather App</h1>
                     <span className="current-user-location__text">Now in <strong>{location}</strong></span>

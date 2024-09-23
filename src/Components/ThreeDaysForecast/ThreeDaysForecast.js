@@ -29,8 +29,8 @@ class ThreeDaysForecast extends Component {
     }
 
     render() {
-        const getDataFromState = (index, dataType) => {
-            return this.state.forecast.length <= 0 ? null : this.state.forecast[index][dataType];
+        const getDataFromState = (dayIndex, dataType) => {
+            return this.state.forecast.length <= 0 ? null : this.state.forecast[dayIndex][dataType];
         }
         return (
             <div>
