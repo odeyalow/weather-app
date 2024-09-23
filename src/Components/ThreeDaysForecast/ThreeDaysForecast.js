@@ -23,12 +23,15 @@ class ThreeDaysForecast extends Component {
     }
 
     onThreeDaysForecastLoaded = (forecast) => {
-        this.setState({forecast})
+        if (forecast && forecast.length > 0) {
+            this.setState({forecast})
+        }          
     }
 
     render() {
-        const {conditionIcon, conditionText, minTemperature, maxTemperature} = this.state.forecast;
-        console.log(this.state.forecast)
+        const getDataFromState = (index, dataType) => {
+            return this.state.forecast.length <= 0 ? null : this.state.forecast[index][dataType];
+        }
         return (
             <div>
                 <span className="days__title">Three day forecast</span>
@@ -38,10 +41,10 @@ class ThreeDaysForecast extends Component {
                             <button className="list__btn">
                                 <span className="date__text">Today</span>
                                 <div className="condition__block">
-                                    <span className="temperature__text">27°/27°</span>
+                                    <span className="temperature__text">{getDataFromState(0, 'maxTemperature')}°/{getDataFromState(0, 'minTemperature')}°</span>
                                     <div className="inner__condition__block">
-                                        <span className="condition__text">Partly Cloudly</span>
-                                        <img src="" alt="Day" className="condition__icon"/>
+                                        <span className="condition__text">{getDataFromState(0, 'conditionText')}</span>
+                                        <img src={getDataFromState(0, 'conditionIcon')} alt="Day" className="condition__icon"/>
                                     </div>
                                 </div>
                             </button>
@@ -50,10 +53,10 @@ class ThreeDaysForecast extends Component {
                             <button className="list__btn">
                                 <span className="date__text">Tomorrow</span>
                                 <div className="condition__block">
-                                    <span className="temperature__text">27°/27°</span>
+                                    <span className="temperature__text">{getDataFromState(1, 'maxTemperature')}°/{getDataFromState(1, 'minTemperature')}°</span>
                                     <div className="inner__condition__block">
-                                        <span className="condition__text">Partly Cloudly</span>
-                                        <img src="" alt="Day" className="condition__icon"/>
+                                        <span className="condition__text">{getDataFromState(1, 'conditionText')}</span>
+                                        <img src={getDataFromState(1, 'conditionIcon')} alt="Day" className="condition__icon"/>
                                     </div>
                                 </div>
                             </button>
@@ -62,10 +65,10 @@ class ThreeDaysForecast extends Component {
                             <button className="list__btn">
                                 <span className="date__text">Day after tomorrow</span>
                                 <div className="condition__block">
-                                    <span className="temperature__text">27°/27°</span>
+                                    <span className="temperature__text">{getDataFromState(2, 'maxTemperature')}°/{getDataFromState(2, 'minTemperature')}°</span>
                                     <div className="inner__condition__block">
-                                        <span className="condition__text">Partly Cloudly</span>
-                                        <img src="" alt="Day" className="condition__icon"/>
+                                        <span className="condition__text">{getDataFromState(2, 'conditionText')}</span>
+                                        <img src={getDataFromState(2, 'conditionIcon')} alt="Day" className="condition__icon"/>
                                     </div>
                                 </div>
                             </button>

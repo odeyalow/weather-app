@@ -31,7 +31,7 @@
 .days__list{
     max-width: 250px;   
     height: 380px;
-    padding: 0 0 0 0;
+    padding: 0 10px;
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
@@ -72,8 +72,13 @@
     }
 }
 
+.list__btn .temperature__text{
+    font-size: 30px;
+}
+
 .date__text{
     text-align: center;
+    font-weight: bold;
 }
 
 .list__btn-active{
@@ -85,11 +90,17 @@
     flex-direction: column;
     align-items: center;
     gap: 10px;
+    margin-top: 10px;
 }
 
 .inner__condition__block{
+    width: 100%;
     display: flex;
+    align-items: center;
+    justify-content: center;                
     gap: 5px;
+    border-top: 2px solid #bebebe;
+    padding-top: 10px;
 }
 
 .inner__condition__block .condition__text{
@@ -97,7 +108,8 @@
 }
 
 .condition__icon{
-    max-width: 30px;
+    max-width: 35px;
+    height: 35px;
     transform: scale(150%);
     @media (max-width:550px) {
         transform: none;
