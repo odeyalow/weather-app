@@ -4,6 +4,12 @@
     font-size: 25px;
     border-radius: 20px;
     text-wrap: nowrap;
+    @media (max-width:820px) {
+        display: block;
+        max-width: 100%;
+        margin: 0 auto;
+        text-align: center;
+    }
     @media (max-width:550px) {
         padding: 13px 15px;
         font-size: 15px;
@@ -18,7 +24,7 @@
     background-color: #fff;
     border-radius: 20px;
     padding:15px 0;
-    margin-top: 40px;
+    margin-top: 20px;
     @media (max-width:820px) {
         padding: 5px 0 15px 10px;
     }
@@ -38,13 +44,16 @@
     @media (max-width:820px) {
         flex-direction: row;
         max-width: 482.03px;   
-        height: 125px;
+        height: 210px;
         padding: 5px 0;
         gap: 5px;
-        overflow-x: scroll;
+        overflow-y: hidden;
     }
     @media (max-width:550px) {
-        height: 115px;
+        height: 200px;
+        padding: 5px 10px;
+        border-radius: 20px;
+        gap: 15px;
     }
 }
 
@@ -67,6 +76,7 @@
         border-radius: 20px;
     }
     @media (max-width:550px) {
+        width: 120%;
         font-size: 20px;
         margin-left: -10px;
     }
@@ -74,6 +84,9 @@
 
 .list__btn .temperature__text{
     font-size: 30px;
+    @media (max-width:550px) {
+        font-size: 20px;
+    }
 }
 
 .date__text{
@@ -105,6 +118,9 @@
 
 .inner__condition__block .condition__text{
     font-size: 20px;
+    @media (max-width:550px) {
+        font-size: 17px;
+    }
 }
 
 .condition__icon{
