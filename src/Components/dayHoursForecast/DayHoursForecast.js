@@ -42,6 +42,8 @@ class DayHoursForecast extends Component {
                 case 2:
                     day = 'Day after tomorrow';
                     break;
+                default:
+                    day = 'Please select a day';
             }
             return day;
         }

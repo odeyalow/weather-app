@@ -7,6 +7,7 @@ import Search from '../search/Search';
 import { Component } from 'react';
 import IPInfoService from '../../services/IPInfoService';
 import WeatherService from '../../services/WeatherService';
+import PlaceholderImage from '../../resources/placeholder-image.png';
 
 import './App.scss';
 
@@ -15,7 +16,8 @@ class App extends Component {
         location: '',
         localtime: '',
         isDay:null,
-        selectedDayIndex: 0
+        selectedDayIndex: 0,
+        searchValue:''
     }
 
     componentDidMount() {
@@ -46,8 +48,23 @@ class App extends Component {
         this.setState({selectedDayIndex:index});
     }
 
+    onScroll = () => {
+        window.scrollTo({
+            top:document.body.scrollHeight,
+            behavior:'smooth'
+        })
+    }
+    
+    onSearch = searchValue => {
+        this.setState({searchValue})
+    }
+
+    onResultSelect = (resultCity, resultRegion, resultCountry) => {
+        this.setState({searchValue:`${resultCity}, ${resultRegion}, ${resultCountry}`})
+    }
+
     render() {
-        const {isDay, location} = this.state;
+        const {isDay, location, searchValue} = this.state;
 
         return (
             <div className={isDay ? 'main day' : 'main night'}>
@@ -69,42 +86,28 @@ class App extends Component {
                         </div>
                     </div>
                     <div className="scroll__wrapper">
-                        <button>See other places</button>
+                        <button onClick={this.onScroll}>See other places</button>
                     </div>
                 </div>
                 
                 <div className="search__content">
-                    <Search/>
-                    <span className="current-user-location__text">Now in <strong>New-York</strong></span>
+                    <Search 
+                    onSearch={this.onSearch}
+                    searchValue={searchValue}
+                    onResultSelect={this.onResultSelect}/>
+                    <img src={PlaceholderImage} className='placeholder__img' alt="Placeholder"/>
+                    {/* <span className="current-user-location__text">Now in <strong>New-York</strong></span>
                     <div className="info__columns">
                         <CurrentWeatherInfo/>
                         <div className="days-hours__columns">
                             <ThreeDaysForecast/>
                             <DayHoursForecast/>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         )
     }
 }
-
-// const View = ({location}) => {
-//     return (
-//         <>
-//             <span className="current-user-location__text">Now in <strong>{location}</strong></span>
-//             <div className="info__columns">
-//             <CurrentWeatherInfo/>
-//                 <div className="days-hours__columns">
-//                     <TenDaysForecast/>
-//                     <DayHoursForecast/>
-//                 </div>
-//             </div>
-//             <div className="scroll__wrapper">
-//                 <button>See other places</button>
-//             </div>
-//         </>
-//     )
-// }
 
 export default App;
