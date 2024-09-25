@@ -51,6 +51,7 @@
     height: 60px;
     border-radius: 20px;
     background-color: #fff;
+    cursor: pointer;
     &:focus, &:hover{
         transform: none;
         transform: translateY(-10%);
@@ -64,6 +65,15 @@
         border-radius: 15px;
     }
 }
+
+.disabled {
+    background-color: #bebebe;
+    cursor: default;
+    &:hover, &:active{
+        transform: none;
+    }
+}
+
 .btn__icon{
     max-width: 35px;
     @media (max-width:550px) {

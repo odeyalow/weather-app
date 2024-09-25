@@ -10,6 +10,12 @@ class Search extends Component {
         searchResults: []
     }
 
+    componentDidMount() {
+        if (this.props.searchValue.length > 0) {
+            this.updateResults();
+        }
+    }
+
     weatherService = new WeatherService();
 
     updateResults = (searchValue) => {
@@ -45,10 +51,12 @@ class Search extends Component {
                     placeholder="Look for some place, for example London"
                     value={this.props.searchValue}
                     onChange={e => {
-                        this.props.onSearch(e.target.value);
+                        this.props.onSearchInput(e.target.value);
                         this.updateResults(e.target.value)
                     }}/>
-                    <button className="search__btn">
+                    <button 
+                    className={this.state.searchResults.length <= 0 ? "search__btn disabled" : "search__btn"}
+                    onClick={this.props.onSearch}>
                             <img src={SearchIcon} alt="Search Btn" className="btn__icon" />
                     </button>
                 </div>

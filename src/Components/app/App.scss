@@ -65,6 +65,8 @@ body{
     z-index: 1;
 }
 .current-user-location__text{
+    max-width: auto;
+    display: inline;
     font-size: 30px;
     background: #fff;
     padding: 15px 20px;
@@ -126,6 +128,12 @@ body{
     display: block;
     margin: 0 auto;
     animation: placeholderImg 1.5s infinite ease alternate;
+    @media (max-width:820px) {
+        max-width: 400px;
+    }
+    @media (max-width:550px) {
+        max-width: 250px;
+    }
 }
 
 @keyframes placeholderImg {

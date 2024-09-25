@@ -1,11 +1,13 @@
 import WeatherService from '../../services/WeatherService';
 import { Component } from 'react';
+import Spinner from '../spinner/Spinner';
 
 import './DayHoursForecast.scss';
 
 class DayHoursForecast extends Component {
     state = {
-        forecast:[]
+        forecast:[],
+        isForecastLoaded:false
     }
 
     weatherService = new WeatherService();
@@ -25,7 +27,7 @@ class DayHoursForecast extends Component {
 
     onForecastLoaded = (forecast) => {
         if (forecast && forecast.length > 0) {
-            this.setState({forecast})
+            this.setState({forecast, isForecastLoaded:true})
         }
     }
 
@@ -47,6 +49,7 @@ class DayHoursForecast extends Component {
             }
             return day;
         }
+
         const showHours = (dayIndex) => {
             return this.state.forecast.length <= 0 ? null : this.state.forecast[dayIndex].hours.map(hour => {
                 return (
@@ -67,7 +70,12 @@ class DayHoursForecast extends Component {
                 <span className="hours__title"><strong>{dayDetermine(this.props.selectedDayIndex)}'s</strong> hourly forecast</span>
                 <div className="hours-list__wrapper">
                     <ul className="hours__list">
-                        {showHours(this.props.selectedDayIndex)}
+                        {this.state.isForecastLoaded 
+                        ? showHours(this.props.selectedDayIndex) 
+                        : <Spinner 
+                        size={'100px'}
+                        color={'#2C2C2C'}
+                        margin={window.innerWidth <= 550 ? '15px 0 0 85px' : '0 0 0 175px'}/>}
                     </ul>
                 </div>
             </div>

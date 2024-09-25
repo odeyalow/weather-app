@@ -17,7 +17,7 @@ class App extends Component {
         localtime: '',
         isDay:null,
         selectedDayIndex: 0,
-        searchValue:''
+        searchValue:'',
     }
 
     componentDidMount() {
@@ -55,7 +55,7 @@ class App extends Component {
         })
     }
     
-    onSearch = searchValue => {
+    onSearchInput = searchValue => {
         this.setState({searchValue})
     }
 
@@ -63,18 +63,27 @@ class App extends Component {
         this.setState({searchValue:`${resultCity}, ${resultRegion}, ${resultCountry}`})
     }
 
+    onSearch = () => {
+        this.setState({isFound:true})
+    }
+
     render() {
-        const {isDay, location, searchValue} = this.state;
+        const {isDay, location, searchValue, isFound} = this.state;
+        const content = isFound ? <SearchResultForecast state={this.state}/> : <img src={PlaceholderImage} className='placeholder__img' alt="Placeholder"/>;
 
         return (
             <div className={isDay ? 'main day' : 'main night'}>
                 <SunAndMoon isDay={isDay}/>
-                <Cloud isDay={isDay}/> 
+                {/* <Cloud isDay={isDay}/>  */}
                 <div className="main__content">
                     <h1 className="main-title">Weather App</h1>
-                    <span className="current-user-location__text">Now in <strong>{location}</strong></span>
+                    <div className="current-user-location__text">
+                        <span>Now in <strong>{location}</strong></span>
+                    </div>
                     <div className="info__columns">
-                        <CurrentWeatherInfo location={location}/>
+                        <CurrentWeatherInfo 
+                        location={location}
+                        />
                         <div className="days-hours__columns">
                             <ThreeDaysForecast 
                             location={location} 
@@ -92,22 +101,37 @@ class App extends Component {
                 
                 <div className="search__content">
                     <Search 
-                    onSearch={this.onSearch}
+                    onSearchInput={this.onSearchInput}
                     searchValue={searchValue}
-                    onResultSelect={this.onResultSelect}/>
-                    <img src={PlaceholderImage} className='placeholder__img' alt="Placeholder"/>
-                    {/* <span className="current-user-location__text">Now in <strong>New-York</strong></span>
-                    <div className="info__columns">
-                        <CurrentWeatherInfo/>
-                        <div className="days-hours__columns">
-                            <ThreeDaysForecast/>
-                            <DayHoursForecast/>
-                        </div>
-                    </div> */}
+                    onResultSelect={this.onResultSelect}
+                    onSearch={this.onSearch}/>
+                    {content}
                 </div>
             </div>
         )
     }
+}
+
+const SearchResultForecast = ({state}) => {
+    const {selectedDayIndex, searchValue, onDaySelect} = state;
+    console.log(searchValue)
+    return (
+        <>
+            <span className="current-user-location__text">Now in <strong></strong></span>
+            <div className="info__columns">
+                <CurrentWeatherInfo location={searchValue}/>
+                <div className="days-hours__columns">
+                    <ThreeDaysForecast
+                    location={searchValue}
+                    onDaySelect={onDaySelect}
+                    selectedDayIndex={selectedDayIndex}/>
+                    <DayHoursForecast
+                    location={searchValue}
+                    selectedDayIndex={selectedDayIndex}/>
+                </div>
+            </div>
+        </>
+    )
 }
 
 export default App;
