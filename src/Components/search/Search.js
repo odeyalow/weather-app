@@ -64,7 +64,8 @@ class Search extends Component {
                     onClick={() => {
                         this.props.onSearch(this.props.userSearchInput);
                         this.setState({isResultsVisible:false});
-                    }}>
+                    }}
+                    disabled={this.state.searchResults.length <= 0 ? true : false}>
                             <img src={SearchIcon} alt="Search Btn" className="btn__icon" />
                     </button>
                 </div>
