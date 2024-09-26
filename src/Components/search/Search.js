@@ -6,24 +6,25 @@ import './Search.scss';
 
 class Search extends Component {
     state = {
-        searchValue:this.props.searchValue,
+        userSearchInput:this.props.userSearchInput,
+        isResultsVisible:false,
         searchResults: []
     }
 
     componentDidMount() {
-        if (this.props.searchValue.length > 0) {
+        if (this.props.userSearchInput.length > 0) {
             this.updateResults();
         }
     }
 
     weatherService = new WeatherService();
 
-    updateResults = (searchValue) => {
-        if (searchValue.length <= 0) {
+    updateResults = (userSearchInput) => {
+        if (userSearchInput.length <= 0) {
             return null;
         }
         this.weatherService
-        .getSearchResults(searchValue)
+        .getSearchResults(userSearchInput)
         .then(searchResults => this.setState({searchResults}));
     }
     
@@ -34,12 +35,16 @@ class Search extends Component {
                 className="result"
                 key={result.id}
                 onClick={() => {
-                    this.props.onResultSelect(result.name, result.region, result.country);
+                    // this.props.onResultSelect(result.name, result.region, result.country);
+                    const searchInput = document.querySelector('.search__input');
+                    searchInput.value = `${result.name}, ${result.region}, ${result.country}`;
                 }}>{result.name}, {result.region}, {result.country}</button>
             )
         })
         const content = results.length > 0 ? results : null,
-        isNoContent = results.length <= 0 && this.props.searchValue.length > 0 ? <div className="result no__hover">No matched results found</div> : null;
+        isNoContent = results.length <= 0 && this.props.userSearchInput.length > 0 
+        ? <div className="result no__hover">No matched results found</div> 
+        : null;
         
         return (
             <>
@@ -49,19 +54,23 @@ class Search extends Component {
                     type="text" name="Search" 
                     className="search__input"
                     placeholder="Look for some place, for example London"
-                    value={this.props.searchValue}
+                    // value={this.props.searchValue}
                     onChange={e => {
                         this.props.onSearchInput(e.target.value);
-                        this.updateResults(e.target.value)
+                        this.updateResults(e.target.value);
+                        this.setState({isResultsVisible:true});
                     }}/>
                     <button 
                     className={this.state.searchResults.length <= 0 ? "search__btn disabled" : "search__btn"}
-                    onClick={this.props.onSearch}>
+                    onClick={() => {
+                        this.props.onSearch(this.props.userSearchInput);
+                        this.setState({isResultsVisible:false});
+                    }}>
                             <img src={SearchIcon} alt="Search Btn" className="btn__icon" />
                     </button>
                 </div>
                 <ul className="result__list">
-                    {content}
+                    {this.state.isResultsVisible ? content : null}
                     {isNoContent}
                 </ul>
             </>

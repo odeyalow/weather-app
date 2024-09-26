@@ -17,7 +17,8 @@ class App extends Component {
         localtime: '',
         isDay:null,
         selectedDayIndex: 0,
-        searchValue:'',
+        userSearchInput:'',
+        searchValue:''
     }
 
     componentDidMount() {
@@ -55,26 +56,27 @@ class App extends Component {
         })
     }
     
-    onSearchInput = searchValue => {
-        this.setState({searchValue})
+    onSearchInput = userSearchInput => {
+        this.setState({userSearchInput})
     }
 
-    onResultSelect = (resultCity, resultRegion, resultCountry) => {
-        this.setState({searchValue:`${resultCity}, ${resultRegion}, ${resultCountry}`})
-    }
+    // onResultSelect = (resultCity, resultRegion, resultCountry) => {
+    //     this.setState({searchValue:`${resultCity}, ${resultRegion}, ${resultCountry}`})
+    // }
 
-    onSearch = () => {
-        this.setState({isFound:true})
+    onSearch = (userSearchInput) => {
+        this.setState({isFound:true, searchValue:userSearchInput})
     }
 
     render() {
-        const {isDay, location, searchValue, isFound} = this.state;
-        const content = isFound ? <SearchResultForecast state={this.state}/> : <img src={PlaceholderImage} className='placeholder__img' alt="Placeholder"/>;
+        const {selectedDayIndex, onDaySelect} = this.state;
+        const {isDay, location, userSearchInput, searchValue, isFound} = this.state;
+        const searchActiveStyles = isFound ? 'search-results__wrapper' : 'search-results__wrapper hidden';
 
         return (
             <div className={isDay ? 'main day' : 'main night'}>
                 <SunAndMoon isDay={isDay}/>
-                {/* <Cloud isDay={isDay}/>  */}
+                <Cloud isDay={isDay}/> 
                 <div className="main__content">
                     <h1 className="main-title">Weather App</h1>
                     <div className="current-user-location__text">
@@ -102,36 +104,32 @@ class App extends Component {
                 <div className="search__content">
                     <Search 
                     onSearchInput={this.onSearchInput}
-                    searchValue={searchValue}
+                    userSearchInput={userSearchInput}
                     onResultSelect={this.onResultSelect}
                     onSearch={this.onSearch}/>
-                    {content}
+
+                    {!isFound ? <img src={PlaceholderImage} alt="Placeholder" className='placeholder__img'/> : null}
+
+                    <div className={searchActiveStyles}>
+                        <span className="current-user-location__text">Now in <strong>{searchValue}</strong></span>
+                        <div className="info__columns">
+                            <CurrentWeatherInfo location={searchValue}/>
+                            <div className="days-hours__columns">
+                                <ThreeDaysForecast
+                                location={searchValue}
+                                onDaySelect={onDaySelect}
+                                selectedDayIndex={selectedDayIndex}/>
+                                <DayHoursForecast
+                                location={searchValue}
+                                selectedDayIndex={selectedDayIndex}/>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         )
     }
-}
-
-const SearchResultForecast = ({state}) => {
-    const {selectedDayIndex, searchValue, onDaySelect} = state;
-    console.log(searchValue)
-    return (
-        <>
-            <span className="current-user-location__text">Now in <strong></strong></span>
-            <div className="info__columns">
-                <CurrentWeatherInfo location={searchValue}/>
-                <div className="days-hours__columns">
-                    <ThreeDaysForecast
-                    location={searchValue}
-                    onDaySelect={onDaySelect}
-                    selectedDayIndex={selectedDayIndex}/>
-                    <DayHoursForecast
-                    location={searchValue}
-                    selectedDayIndex={selectedDayIndex}/>
-                </div>
-            </div>
-        </>
-    )
 }
 
 export default App;
