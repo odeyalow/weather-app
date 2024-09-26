@@ -22,7 +22,8 @@ class DayHoursForecast extends Component {
     updateForecast = () => {
         this.weatherService
         .getThreeDaysForecast(this.props.location)
-        .then(this.onForecastLoaded);
+        .then(this.onForecastLoaded)
+        .catch(this.props.onError);
     }
 
     onForecastLoaded = (forecast) => {

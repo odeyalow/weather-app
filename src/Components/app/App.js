@@ -1,13 +1,14 @@
 import SunAndMoon from '../sunAndMoon/SunAndMoon';
 import Cloud from '../cloud/Cloud';
 import CurrentWeatherInfo from '../currentWeatherInfo/CurrentWeatherInfo';
-import ThreeDaysForecast from '../ThreeDaysForecast/ThreeDaysForecast';
+import ThreeDaysForecast from '../threeDaysForecast/ThreeDaysForecast';
 import DayHoursForecast from '../dayHoursForecast/DayHoursForecast';
 import Search from '../search/Search';
 import { Component } from 'react';
 import IPInfoService from '../../services/IPInfoService';
 import WeatherService from '../../services/WeatherService';
 import PlaceholderImage from '../../resources/placeholder-image.png';
+import ErrorImage from '../../resources/error-image.png';
 
 import './App.scss';
 
@@ -19,7 +20,8 @@ class App extends Component {
         selectedUserDayIndex: 0,
         selectedSearchDayIndex:0,
         userSearchInput:'',
-        searchValue:''
+        searchValue:'',
+        error:false
     }
 
     componentDidMount() {
@@ -43,7 +45,8 @@ class App extends Component {
     updateLocation = () => {
         this.ipInfoService
         .getLocation()
-        .then(res => this.onDataLoaded(res.city));
+        .then(res => this.onDataLoaded(res.city))
+        .catch(this.onError);
     }
 
     onUserLocationDaySelect = (index) => {
@@ -73,64 +76,82 @@ class App extends Component {
         this.setState({isFound:true, searchValue:userSearchInput, selectedSearchDayIndex:0})
     }
 
+    onError = () => {
+        this.setState({error:true});
+    }
+
     render() {
-        const {isDay, location, userSearchInput, searchValue, isFound, selectedUserDayIndex, selectedSearchDayIndex} = this.state;
+        const {isDay, location, userSearchInput, searchValue, isFound, selectedUserDayIndex, selectedSearchDayIndex, error} = this.state;
         const searchActiveStyles = isFound ? 'search-results__wrapper' : 'search-results__wrapper hidden';
 
         return (
             <div className={isDay ? 'main day' : 'main night'}>
                 <SunAndMoon isDay={isDay}/>
                 <Cloud isDay={isDay}/> 
-                <div className="main__content">
-                    <h1 className="main-title">Weather App</h1>
-                    <div className="current-user-location__text">
-                        <span>Now in <strong>{location}</strong></span>
-                    </div>
-                    <div className="info__columns">
-                        <CurrentWeatherInfo 
-                        location={location}
-                        />
-                        <div className="days-hours__columns">
-                            <ThreeDaysForecast
-                            location={location} 
-                            onDaySelect={this.onUserLocationDaySelect}
-                            selectedDayIndex={selectedUserDayIndex}/>
-                            <DayHoursForecast
-                            location={location}
-                            selectedDayIndex={selectedUserDayIndex}/>
+
+                {error
+                ? <div className="error__block">
+                    <img src={ErrorImage} alt="Error" className="error__img waiting-animation" />
+                  </div>
+                :
+                <>
+                    <div className="main__content">
+                        <h1 className="main-title">Weather App</h1>
+                        <div className="current-user-location__text">
+                            <span>Now in <strong>{location}</strong></span>
                         </div>
-                    </div>
-                    <div className="scroll__wrapper">
-                        <button onClick={this.onScroll}>See other places</button>
-                    </div>
-                </div>
-                
-                <div className="search__content">
-                    <Search 
-                    onSearchInput={this.onSearchInput}
-                    userSearchInput={userSearchInput}
-                    onResultSelect={this.onResultSelect}
-                    onSearch={this.onSearch}/>
-
-                    {!isFound ? <img src={PlaceholderImage} alt="Placeholder" className='placeholder__img'/> : null}
-
-                    <div className={searchActiveStyles}>
-                        <span className="current-user-location__text">Now in <strong>{searchValue}</strong></span>
                         <div className="info__columns">
-                            <CurrentWeatherInfo location={searchValue}/>
+                            <CurrentWeatherInfo 
+                            location={location}
+                            onError={this.onError}
+                            />
                             <div className="days-hours__columns">
                                 <ThreeDaysForecast
-                                location={searchValue}
-                                onDaySelect={this.onSearchForecastDaySelect}
-                                selectedDayIndex={selectedSearchDayIndex}/>
+                                location={location} 
+                                onDaySelect={this.onUserLocationDaySelect}
+                                selectedDayIndex={selectedUserDayIndex}
+                                onError={this.onError}/>
                                 <DayHoursForecast
-                                location={searchValue}
-                                selectedDayIndex={selectedSearchDayIndex}/>
+                                location={location}
+                                selectedDayIndex={selectedUserDayIndex}
+                                onError={this.onError}/>
                             </div>
                         </div>
+                        <div className="scroll__wrapper">
+                            <button onClick={this.onScroll}>See other places</button>
+                        </div>
                     </div>
+                    <div className="search__content">
+                        <Search 
+                        onSearchInput={this.onSearchInput}
+                        userSearchInput={userSearchInput}
+                        onResultSelect={this.onResultSelect}
+                        onSearch={this.onSearch}/>
 
-                </div>
+                        {!isFound ? <img src={PlaceholderImage} alt="Placeholder" className='placeholder__img waiting-animation'/> : null}
+
+                        <div className={searchActiveStyles}>
+                            <span className="current-user-location__text">Now in <strong>{searchValue}</strong></span>
+                            <div className="info__columns">
+                                <CurrentWeatherInfo location={searchValue}
+                                onError={this.onError}/>
+                                <div className="days-hours__columns">
+                                    <ThreeDaysForecast
+                                    location={searchValue}
+                                    onDaySelect={this.onSearchForecastDaySelect}
+                                    selectedDayIndex={selectedSearchDayIndex}
+                                    onError={this.onError}/>
+                                    <DayHoursForecast
+                                    location={searchValue}
+                                    selectedDayIndex={selectedSearchDayIndex}
+                                    onError={this.onError}/>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </>
+                }
             </div>
         )
     }

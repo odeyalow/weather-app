@@ -21,7 +21,8 @@ class ThreeDaysForecast extends Component {
     updateForecast = () => {
         this.weatherService
         .getThreeDaysForecast(this.props.location)
-        .then(this.onThreeDaysForecastLoaded);
+        .then(this.onThreeDaysForecastLoaded)
+        .catch(this.props.onError);
     }
 
     onThreeDaysForecastLoaded = (forecast) => {

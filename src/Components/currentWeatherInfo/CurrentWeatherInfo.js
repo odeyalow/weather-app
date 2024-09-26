@@ -37,12 +37,14 @@ class CurrentWeatherInfo extends Component{
     updateCurrentForecast = () => {
         this.weatherService
         .getCurrentForecast(this.props.location)
-        .then(this.onWeatherLoaded);
+        .then(this.onWeatherLoaded)
+        .catch(this.props.onError);
         const date = new Date(),
         filteredDate = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDay() < 10 ? '0' + date.getDay() : date.getDay()}`;
         this.weatherService
         .getAstronomy(this.props.location, filteredDate)
-        .then(this.onAstronomyLoaded);
+        .then(this.onAstronomyLoaded)
+        .catch(this.props.onError);
     }
 
     render() {
