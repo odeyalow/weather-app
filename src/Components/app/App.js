@@ -1,7 +1,7 @@
 import SunAndMoon from '../sunAndMoon/SunAndMoon';
 import Cloud from '../cloud/Cloud';
-import CurrentWeatherInfo from '../currentWeatherInfo/CurrentWeatherInfo';
 import ThreeDaysForecast from '../threeDaysForecast/ThreeDaysForecast';
+import CurrentWeatherInfo from '../currentWeatherInfo/CurrentWeatherInfo';
 import DayHoursForecast from '../dayHoursForecast/DayHoursForecast';
 import Search from '../search/Search';
 import { Component } from 'react';
