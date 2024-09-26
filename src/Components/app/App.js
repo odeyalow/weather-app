@@ -1,6 +1,6 @@
 import SunAndMoon from '../sunAndMoon/SunAndMoon';
 import Cloud from '../cloud/Cloud';
-import ThreeDaysForecast from '../threeDaysForecast/ThreeDaysForecast';
+import ThreeDaysForecast from '../ThreeDaysForecast/ThreeDaysForecast';
 import CurrentWeatherInfo from '../currentWeatherInfo/CurrentWeatherInfo';
 import DayHoursForecast from '../dayHoursForecast/DayHoursForecast';
 import Search from '../search/Search';
