@@ -1,5 +1,5 @@
 class WeatherService {
-    _apiBase = 'http://api.weatherapi.com/v1/';
+    _apiBase = 'https://api.weatherapi.com/v1/';
     _apiKey = '4c4a9fdc9c04461191890932242009';
     
     getData = async (url) => {
