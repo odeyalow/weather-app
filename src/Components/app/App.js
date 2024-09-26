@@ -16,7 +16,8 @@ class App extends Component {
         location: '',
         localtime: '',
         isDay:null,
-        selectedDayIndex: 0,
+        selectedUserDayIndex: 0,
+        selectedSearchDayIndex:0,
         userSearchInput:'',
         searchValue:''
     }
@@ -45,8 +46,12 @@ class App extends Component {
         .then(res => this.onDataLoaded(res.city));
     }
 
-    onDaySelect = (index) => {
-        this.setState({selectedDayIndex:index});
+    onUserLocationDaySelect = (index) => {
+        this.setState({selectedUserDayIndex:index});
+    }
+
+    onSearchForecastDaySelect = (index) => {
+        this.setState({selectedSearchDayIndex:index});
     }
 
     onScroll = () => {
@@ -60,17 +65,16 @@ class App extends Component {
         this.setState({userSearchInput})
     }
 
-    // onResultSelect = (resultCity, resultRegion, resultCountry) => {
-    //     this.setState({searchValue:`${resultCity}, ${resultRegion}, ${resultCountry}`})
-    // }
-
+    onResultSelect = (selectedResult) => {
+        this.setState({userSearchInput:selectedResult})
+    }
+    
     onSearch = (userSearchInput) => {
-        this.setState({isFound:true, searchValue:userSearchInput})
+        this.setState({isFound:true, searchValue:userSearchInput, selectedSearchDayIndex:0})
     }
 
     render() {
-        const {selectedDayIndex, onDaySelect} = this.state;
-        const {isDay, location, userSearchInput, searchValue, isFound} = this.state;
+        const {isDay, location, userSearchInput, searchValue, isFound, selectedUserDayIndex, selectedSearchDayIndex} = this.state;
         const searchActiveStyles = isFound ? 'search-results__wrapper' : 'search-results__wrapper hidden';
 
         return (
@@ -87,13 +91,13 @@ class App extends Component {
                         location={location}
                         />
                         <div className="days-hours__columns">
-                            <ThreeDaysForecast 
+                            <ThreeDaysForecast
                             location={location} 
-                            onDaySelect={this.onDaySelect}
-                            selectedDayIndex={this.state.selectedDayIndex}/>
-                            <DayHoursForecast 
+                            onDaySelect={this.onUserLocationDaySelect}
+                            selectedDayIndex={selectedUserDayIndex}/>
+                            <DayHoursForecast
                             location={location}
-                            selectedDayIndex={this.state.selectedDayIndex}/>
+                            selectedDayIndex={selectedUserDayIndex}/>
                         </div>
                     </div>
                     <div className="scroll__wrapper">
@@ -117,11 +121,11 @@ class App extends Component {
                             <div className="days-hours__columns">
                                 <ThreeDaysForecast
                                 location={searchValue}
-                                onDaySelect={onDaySelect}
-                                selectedDayIndex={selectedDayIndex}/>
+                                onDaySelect={this.onSearchForecastDaySelect}
+                                selectedDayIndex={selectedSearchDayIndex}/>
                                 <DayHoursForecast
                                 location={searchValue}
-                                selectedDayIndex={selectedDayIndex}/>
+                                selectedDayIndex={selectedSearchDayIndex}/>
                             </div>
                         </div>
                     </div>

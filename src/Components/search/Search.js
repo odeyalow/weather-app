@@ -35,7 +35,7 @@ class Search extends Component {
                 className="result"
                 key={result.id}
                 onClick={() => {
-                    // this.props.onResultSelect(result.name, result.region, result.country);
+                    this.props.onResultSelect(result.name);
                     const searchInput = document.querySelector('.search__input');
                     searchInput.value = `${result.name}, ${result.region}, ${result.country}`;
                 }}>{result.name}, {result.region}, {result.country}</button>
@@ -54,7 +54,6 @@ class Search extends Component {
                     type="text" name="Search" 
                     className="search__input"
                     placeholder="Look for some place, for example London"
-                    // value={this.props.searchValue}
                     onChange={e => {
                         this.props.onSearchInput(e.target.value);
                         this.updateResults(e.target.value);
