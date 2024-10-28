@@ -9,6 +9,7 @@ import IPInfoService from '../../services/IPInfoService';
 import WeatherService from '../../services/WeatherService';
 import PlaceholderImage from '../../resources/placeholder-image.png';
 import ErrorImage from '../../resources/error-image.png';
+import ErrorBoundary from '../errorBoundary/ErrorBoundary';
 
 import './App.scss';
 
@@ -94,7 +95,7 @@ class App extends Component {
                     <img src={ErrorImage} alt="Error" className="error__img waiting-animation" />
                   </div>
                 :
-                <>
+                <ErrorBoundary>
                     <div className="main__content">
                         <h1 className="main-title">Weather App</h1>
                         <div className="current-user-location__text">
@@ -150,7 +151,7 @@ class App extends Component {
                         </div>
 
                     </div>
-                </>
+                </ErrorBoundary>
                 }
             </div>
         )
